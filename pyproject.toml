@@ -1,18 +1,44 @@
 [project]
 name = "history-explorer"
 version = "0.1.0"
-description = "Add your description here"
+description = "역사적 사건의 동시대성을 3D 지구본 위에서 시각적으로 탐험하는 AI 교육 웹앱"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    # --- LangChain / LangGraph ---
     "langchain[openai]>=0.3.27",
     "langgraph>=0.6.7",
     "langgraph-cli[inmem]>=0.4.2",
     "langsmith>=0.4.28",
-    "openai[aiohttp]>=1.107.3",
-    "python-dotenv>=1.1.1",
     "langchain-ollama>=0.1.0",
-    "grandalf>=0.8"~
+    "langchain-community>=0.3.0",      # DirectoryLoader, TextLoader 등
+
+    # --- LLM / API ---
+    "openai[aiohttp]>=1.107.3",
+
+    # --- 벡터 DB (RAG) ---
+    "langchain-chroma>=0.2.0",
+    "chromadb>=1.0.0",
+
+    # --- 문서 로딩 (RAG) ---
+    "pypdf>=5.0.0",                    # PDF 로딩
+    "wikipedia-api>=0.7.0",            # Wikipedia 자동 수집
+    "langchain-text-splitters>=0.3.0", 
+    
+    # --- TTS (나레이션) ---
+    "kokoro>=0.9.4",
+    "soundfile>=0.13.0",
+
+    # --- 백엔드 서버 ---
+    "fastapi>=0.115.0",
+    "uvicorn>=0.34.0",
+    "websockets>=15.0",
+
+    # --- 유틸리티 ---
+    "httpx>=0.28.0",
+    "python-dotenv>=1.1.1",
+    "numpy>=2.0.0",
+    "grandalf>=0.8",
 ]
 
 [dependency-groups]

@@ -8,3 +8,10 @@ wheels/
 
 # Virtual environments
 .venv
+
+*.sqlite3
+*.pdf
+
+docs/
+chroma_db/
+build_db.py
