@@ -1,8 +1,12 @@
 from langgraph.graph import StateGraph, START, END
 from langgraph.types import Send, Command
-from langchain_ollama import ChatOllama
+
+# from langchain_ollama import ChatOllama
+from langchain_openai import ChatOpenAI
 from langchain_chroma import Chroma
-from langchain_ollama import OllamaEmbeddings
+
+# from langchain_ollama import OllamaEmbeddings
+from langchain_openai import OpenAIEmbeddings
 from langchain_core.messages import HumanMessage
 from typing import TypedDict, Optional, List, Annotated
 from pydantic import BaseModel
@@ -11,11 +15,15 @@ from langchain_core.messages import AnyMessage
 import wikipediaapi
 import json
 import re
+from dotenv import load_dotenv
 
+load_dotenv()
 
-llm = ChatOllama(model="qwen2.5:14b", temperature=0.0)
+# llm = ChatOllama(model="qwen2.5:14b", temperature=0.0)
+llm = ChatOpenAI(model="gpt-4o", temperature=0.0)
 
-embeddings = OllamaEmbeddings(model="nomic-embed-text")
+# embeddings = OllamaEmbeddings(model="nomic-embed-text")
+embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
 
 vectorstore = Chroma(
     collection_name="history_explorer",
@@ -290,7 +298,7 @@ def content_generator(state: SearchState) -> dict:
             "content": [
                 {{
                     "country_name": "{country_name}",
-                    "text": "A 2-3 sentence voice-over narration script. Write in the style of a documentary narrator — vivid, engaging, and specific. Mention at least one concrete event, person, or place from the context."
+                    "text": "A 2-3 sentence voice-over narration script. Write in the style of a documentary narrator — vivid, engaging, and specific. Mention at least one concrete event, person, or place from the context. You Must reponse in Korean."
                     "visual_prompt": "a detailed visual scene description for image generation"
                 }}
             ]
@@ -315,11 +323,12 @@ graph.add_conditional_edges("input_validator", validate_chekcer)
 graph.add_conditional_edges("scope_limiter", dispatch_content_generator)
 graph.add_edge("content_generator", END)
 
-
 app = graph.compile()
 
-result = app.invoke(
-    {
-        "query": "영국에서 산업혁명이 있던 시기, 지금의 한국과 일본에서는 어떤 상황이었는지?"
-    }
-)
+if __name__ == "__main__":
+    result = app.invoke(
+        {
+            "query": "영국에서 산업혁명이 있던 시기, 지금의 한국과 일본에서는 어떤 상황이었는지?"
+        }
+    )
+    print(result)

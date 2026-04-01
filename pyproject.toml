@@ -24,7 +24,7 @@ dependencies = [
     "pypdf>=5.0.0",                    # PDF 로딩
     "wikipedia-api>=0.7.0",            # Wikipedia 자동 수집
     "langchain-text-splitters>=0.3.0", 
-    
+
     # --- TTS (나레이션) ---
     "kokoro>=0.9.4",
     "soundfile>=0.13.0",
@@ -39,6 +39,9 @@ dependencies = [
     "python-dotenv>=1.1.1",
     "numpy>=2.0.0",
     "grandalf>=0.8",
+
+    # --- 프론트엔드 ---
+    "streamlit>=1.45.0",
 ]
 
 [dependency-groups]

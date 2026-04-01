@@ -15,3 +15,5 @@ wheels/
 docs/
 chroma_db/
 build_db.py
+main.py
+.env
