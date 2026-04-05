@@ -24,10 +24,11 @@ dependencies = [
     "pypdf>=5.0.0",                    # PDF 로딩
     "wikipedia-api>=0.7.0",            # Wikipedia 자동 수집
     "langchain-text-splitters>=0.3.0", 
-
+        
     # --- TTS (나레이션) ---
     "kokoro>=0.9.4",
     "soundfile>=0.13.0",
+    "misaki[ko]>=0.9.4",
 
     # --- 백엔드 서버 ---
     "fastapi>=0.115.0",
@@ -42,6 +43,8 @@ dependencies = [
 
     # --- 프론트엔드 ---
     "streamlit>=1.45.0",
+    "folium>=0.19.0",
+    "streamlit-folium>=0.25.0",
 ]
 
 [dependency-groups]
